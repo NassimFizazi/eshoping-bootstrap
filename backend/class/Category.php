@@ -17,6 +17,12 @@ class Category {
 
     // Read all categories
     public function readAll() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            // Return an empty result set if no connection
+            return new PDOStatement();
+        }
+        
         // Query
         $query = "SELECT id, name, description, created_at 
                   FROM " . $this->table_name . "
@@ -33,11 +39,16 @@ class Category {
 
     // Read one category
     public function readOne() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to read single record
         $query = "SELECT id, name, description, created_at 
                   FROM " . $this->table_name . " 
                   WHERE id = ?
-                  LIMIT 0,1";
+                  LIMIT 1";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -64,6 +75,11 @@ class Category {
 
     // Create category (admin functionality)
     public function create() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to insert record
         $query = "INSERT INTO " . $this->table_name . " 
                 (name, description) 
@@ -92,6 +108,11 @@ class Category {
 
     // Update category (admin functionality)
     public function update() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to update record
         $query = "UPDATE " . $this->table_name . "
                 SET name = :name, description = :description
@@ -120,6 +141,11 @@ class Category {
 
     // Delete category (admin functionality)
     public function delete() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
 

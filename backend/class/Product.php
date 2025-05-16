@@ -327,6 +327,11 @@ class Product {
 
     // Update stock quantity (usually after order)
     public function updateStock($quantity) {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to update stock
         $query = "UPDATE " . $this->table_name . "
                   SET stock_quantity = stock_quantity - :quantity
