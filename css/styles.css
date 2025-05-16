@@ -1,0 +1,269 @@
+/* Custom styles on top of Bootstrap */
+
+/* Global styles */
+body {
+    padding-top: 56px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.text-primary {
+    color: #0D6EFD !important;
+}
+
+.text-secondary {
+    color: #6C757D !important;
+}
+
+.text-success {
+    color: #198754 !important;
+}
+
+.text-danger {
+    color: #DC3545 !important;
+}
+
+.bg-light {
+    background-color: #F8F9FA !important;
+}
+
+.text-dark {
+    color: #212529 !important;
+}
+
+.btn-primary {
+    background-color: #0D6EFD;
+    border-color: #0D6EFD;
+}
+
+.btn-secondary {
+    background-color: #6C757D;
+    border-color: #6C757D;
+}
+
+.btn-success {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.btn-danger {
+    background-color: #DC3545;
+    border-color: #DC3545;
+}
+
+/* Banner styles */
+.hero-banner {
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 80px 0;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Product card styles */
+.product-card {
+    margin-bottom: 30px;
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .btn {
+    margin-top: auto;
+}
+
+/* Category pill */
+.category-pill {
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: background-color 0.3s;
+    color: #212529;
+    text-decoration: none;
+}
+
+.category-pill:hover,
+.category-pill.active {
+    background-color: #0D6EFD;
+    color: white;
+    text-decoration: none;
+}
+
+/* Product detail page */
+.product-image {
+    max-height: 400px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.product-details h1 {
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #0D6EFD;
+    margin-bottom: 20px;
+}
+
+.quantity-control {
+    max-width: 120px;
+    margin-bottom: 20px;
+}
+
+/* Cart styles */
+.cart-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.cart-quantity {
+    max-width: 80px;
+}
+
+.cart-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Login/Register form */
+.auth-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+/* Profile page */
+.profile-card {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.order-history .card {
+    margin-bottom: 20px;
+}
+
+/* Order detail */
+.order-detail {
+    margin-bottom: 30px;
+}
+
+.order-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.status-processing {
+    background-color: #0D6EFD;
+    color: white;
+}
+
+.status-shipped {
+    background-color: #6C757D;
+    color: white;
+}
+
+.status-delivered {
+    background-color: #198754;
+    color: white;
+}
+
+.status-cancelled {
+    background-color: #DC3545;
+    color: white;
+}
+
+/* Admin dashboard */
+.admin-sidebar {
+    background-color: #212529;
+    color: white;
+    padding: 20px 0;
+    min-height: calc(100vh - 56px);
+}
+
+.admin-sidebar .nav-link {
+    color: rgba(255,255,255,.75);
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    color: white;
+}
+
+.admin-content {
+    padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .product-card img {
+        height: 160px;
+    }
+    
+    .admin-sidebar {
+        min-height: auto;
+    }
+}
+
+/* Footer styles */
+footer {
+    margin-top: 50px;
+}
