@@ -37,7 +37,7 @@ class Product {
         }
                         
         $query .= " ORDER BY p.created_at DESC
-                  LIMIT :start, :per_page";
+                  LIMIT :per_page OFFSET :start";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -89,7 +89,7 @@ class Product {
                   FROM " . $this->table_name . " p
                   LEFT JOIN categories c ON p.category_id = c.id
                   WHERE p.id = ?
-                  LIMIT 0,1";
+                  LIMIT 1";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -231,7 +231,7 @@ class Product {
                   LEFT JOIN categories c ON p.category_id = c.id
                   WHERE p.name LIKE :keywords OR p.description LIKE :keywords
                   ORDER BY p.created_at DESC
-                  LIMIT :start, :per_page";
+                  LIMIT :per_page OFFSET :start";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
