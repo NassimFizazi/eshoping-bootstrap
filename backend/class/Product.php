@@ -22,6 +22,12 @@ class Product {
 
     // Read all products
     public function readAll($page = 1, $per_page = 8, $category_id = null) {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            // Return an empty result set if no connection
+            return new PDOStatement();
+        }
+        
         // Calculate the starting point for the LIMIT clause
         $start = ($page - 1) * $per_page;
 
@@ -57,6 +63,11 @@ class Product {
 
     // Get total product count (for pagination)
     public function getTotal($category_id = null) {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return 0;
+        }
+        
         // Base query
         $query = "SELECT COUNT(*) as total FROM " . $this->table_name;
         
@@ -77,11 +88,16 @@ class Product {
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        return $row['total'];
+        return $row['total'] ?? 0;
     }
 
     // Read single product
     public function readOne() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to read single record
         $query = "SELECT p.id, p.name, p.description, p.price, p.image_url, 
                         p.category_id, p.stock_quantity, p.created_at, 
@@ -121,6 +137,11 @@ class Product {
 
     // Create product (admin functionality)
     public function create() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to insert record
         $query = "INSERT INTO " . $this->table_name . " 
                 (name, description, price, image_url, category_id, stock_quantity) 
@@ -157,6 +178,11 @@ class Product {
 
     // Update product (admin functionality)
     public function update() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query to update record
         $query = "UPDATE " . $this->table_name . "
                 SET name = :name, 
@@ -198,6 +224,11 @@ class Product {
 
     // Delete product (admin functionality)
     public function delete() {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return false;
+        }
+        
         // Query
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
 
@@ -220,6 +251,12 @@ class Product {
 
     // Search products by name or description
     public function search($keywords, $page = 1, $per_page = 8) {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            // Return an empty result set if no connection
+            return new PDOStatement();
+        }
+        
         // Calculate the starting point for the LIMIT clause
         $start = ($page - 1) * $per_page;
 
@@ -253,6 +290,11 @@ class Product {
 
     // Get search result count (for pagination)
     public function getSearchTotal($keywords) {
+        // Make sure we have a valid connection
+        if (!$this->conn) {
+            return 0;
+        }
+        
         // Query
         $query = "SELECT COUNT(*) as total 
                   FROM " . $this->table_name . " 
@@ -272,7 +314,7 @@ class Product {
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        return $row['total'];
+        return $row['total'] ?? 0;
     }
 
     // Check if product is in stock and has sufficient quantity
